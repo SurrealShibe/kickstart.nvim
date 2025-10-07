@@ -91,7 +91,8 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
+vim.opt.guifont = "JetBrainsMono Nerd Font:h11"
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
@@ -248,14 +249,138 @@ rtp:prepend(lazypath)
 require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'NMAC427/guess-indent.nvim', -- Detect tabstop and shiftwidth automatically
-
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
   -- keys can be used to configure plugin behavior/loading/etc.
   --
   -- Use `opts = {}` to automatically pass options to a plugin's `setup()` function, forcing the plugin to be loaded.
   --
+  {
+    "catppuccin/nvim",
+	name = "catppuccin",
+	priority = 1000,
+    opts = {
+	  flavour = "macchiato", -- latte, frappe, macchiato, mocha
+	},
+  -- {
+  --   'nvimdev/dashboard-nvim',
+  --   event = 'VimEnter',
+  --   config = function()
+  --     require('dashboard').setup {
+  --       -- config
+  --       -- Hyper
+  --       -- theme = 'hyper',
+  --       -- packages = { enable = true },
+  --       -- week_header = {
+  --       --   enable = true,
+  --       -- },
+  --       -- shortcut = {
+  --       --   { desc = '󰊳 Update', group = '@property', action = 'Lazy update', key = 'u' },
+  --       --   {
+  --       --     icon = ' ',
+  --       --     icon_hl = '@variable',
+  --       --     desc = 'Files',
+  --       --     group = 'Label',
+  --       --     action = 'Telescope find_files',
+  --       --     key = 'f',
+  --       --   },
+  --       --   {
+  --       --     desc = ' Apps',
+  --       --     group = 'DiagnosticHint',
+  --       --     action = 'Telescope app',
+  --       --     key = 'a',
+  --       --   },
+  --       --   {
+  --       --     desc = ' dotfiles',
+  --       --     group = 'Number',
+  --       --     action = 'Telescope dotfiles',
+  --       --     key = 'd',
+  --       --   },
+  --       -- }
+  --       -- Doom
+  --       theme = 'doom',
+  --       header = {}, --your header
+  --       center = {
+  --         {
+  --           icon = ' ',
+  --           icon_hl = 'Title',
+  --           desc = 'Find File           ',
+  --           desc_hl = 'String',
+  --           key = 'b',
+  --           keymap = 'SPC f f',
+  --           key_hl = 'Number',
+  --           key_format = ' %s', -- remove default surrounding `[]`
+  --           action = 'lua print(2)'
+  --         },
+  --         {
+  --           icon = ' ',
+  --           desc = 'Find Dotfiles',
+  --           key = 'f',
+  --           keymap = 'SPC f d',
+  --           key_format = ' %s', -- remove default surrounding `[]`
+  --           action = 'lua print(3)'
+  --         },
+  --       },
+  --       footer = {}  --your footer
+  --     }
+  --   end,
+  --   dependencies = { {'nvim-tree/nvim-web-devicons'}}
+  -- },
+  },
 
+  -- { 'nvim-mini/mini.nvim', version = false },
+  -- {
+  --   "nvim-mini/mini.animate",
+  --   event = "VeryLazy",
+  --   cond = vim.g.neovide == nil,
+  --   opts = function(_, opts)
+  --     -- don't use animate when scrolling with the mouse
+  --     local mouse_scrolled = false
+  --     for _, scroll in ipairs({ "Up", "Down" }) do
+  --       local key = "<ScrollWheel" .. scroll .. ">"
+  --       vim.keymap.set({ "", "i" }, key, function()
+  --         mouse_scrolled = true
+  --         return key
+  --       end, { expr = true })
+  --     end
+
+  --     vim.api.nvim_create_autocmd("FileType", {
+  --       pattern = "grug-far",
+  --       callback = function()
+  --         vim.b.minianimate_disable = true
+  --       end,
+  --     })
+
+  --     Snacks.toggle({
+  --       name = "Mini Animate",
+  --       get = function()
+  --         return not vim.g.minianimate_disable
+  --       end,
+  --       set = function(state)
+  --         vim.g.minianimate_disable = not state
+  --       end,
+  --     }):map("<leader>ua")
+
+  --     local animate = require("mini.animate")
+  --     return vim.tbl_deep_extend("force", opts, {
+  --       resize = {
+  --         timing = animate.gen_timing.linear({ duration = 50, unit = "total" }),
+  --       },
+  --       scroll = {
+  --         timing = animate.gen_timing.linear({ duration = 150, unit = "total" }),
+  --         subscroll = animate.gen_subscroll.equal({
+  --           predicate = function(total_scroll)
+  --             if mouse_scrolled then
+  --               mouse_scrolled = false
+  --               return false
+  --             end
+  --             return total_scroll > 1
+  --           end,
+  --         }),
+  --       },
+  --     })
+  --   end,
+  -- },
   -- Alternatively, use `config = function() ... end` for full control over the configuration.
   -- If you prefer to call `setup` explicitly, use:
   --    {
@@ -357,7 +482,10 @@ require('lazy').setup({
   -- you do for a plugin at the top level, you can do for a dependency.
   --
   -- Use the `dependencies` key to specify the dependencies of a particular plugin
-
+  {
+    'nvim-telescope/telescope-fzf-native.nvim',
+    build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release'
+  },
   { -- Fuzzy Finder (files, lsp, etc)
     'nvim-telescope/telescope.nvim',
     event = 'VimEnter',
@@ -462,6 +590,15 @@ require('lazy').setup({
     end,
   },
 
+  {
+    'ecthelionvi/NeoColumn.nvim',
+    opts = {
+	  always_on = true,
+	},
+  },
+  {
+    'ThePrimeagen/vim-be-good'
+  },
   -- LSP Plugins
   {
     -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
@@ -938,6 +1075,40 @@ require('lazy').setup({
       --  Check out: https://github.com/echasnovski/mini.nvim
     end,
   },
+  -- {
+  --   "nosduco/remote-sshfs.nvim",
+  --   dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+  --   opts = {
+  --     -- Refer to the configuration section below
+  --     -- or leave empty for defaults
+  --   },
+  -- },
+  {
+    'chipsenkbeil/distant.nvim',
+    branch = 'v0.3',
+    config = function()
+        require('distant'):setup({
+          -- servers = {
+          --     ['access.oregonstate.edu'] = {
+          --         connect = {
+          --             default = {
+          --                 -- username = 'kretschs',
+          --                 -- scheme = 'ssh',
+          --                 options = 'identity_files="~/.ssh/id_rsa_engi"'
+          --             }
+          --         }
+          --   }
+          -- }
+        })
+    end
+  },
+  {
+    "sphamba/smear-cursor.nvim",
+    opts = {
+	  cursor_color = "none",
+	  time_interval = 5
+	},
+  },
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
@@ -956,6 +1127,13 @@ require('lazy').setup({
       },
       indent = { enable = true, disable = { 'ruby' } },
     },
+    {
+      "alex-popov-tech/store.nvim",
+      dependencies = { "OXY2DEV/markview.nvim" },
+      opts = {},
+      cmd = "Store"
+    },
+    -- Using lazy.nvim
     -- There are additional nvim-treesitter modules that you can use to interact
     -- with nvim-treesitter. You should go explore a few and see what interests you:
     --
@@ -984,7 +1162,7 @@ require('lazy').setup({
   --    This is the easiest way to modularize your config.
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-  -- { import = 'custom.plugins' },
+  { import = 'custom.plugins' },
   --
   -- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
   -- Or use telescope!
@@ -1012,5 +1190,6 @@ require('lazy').setup({
   },
 })
 
+vim.cmd.colorscheme "catppuccin-macchiato"
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
