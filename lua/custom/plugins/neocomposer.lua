@@ -30,5 +30,7 @@
         toggle_macro_menu = '<m-q>',
       },
     },
-    require('NeoComposer.ui').status_recording()
+    config = function()
+      require('NeoComposer.ui').status_recording()
+    end,
 }
