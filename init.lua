@@ -92,8 +92,9 @@ vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
-vim.opt.guifont = "JetBrainsMono Nerd Font:h11"
+vim.opt.guifont = 'JetBrainsMono Nerd Font:h11'
 
+vim.g.sqlite_clib_path = [[C:/Users/surre/sqlite-dll-win-x64-3500400/sqlite3.dll]]
 -- [[ Setting options ]]
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
@@ -256,76 +257,79 @@ require('lazy').setup({
   -- Use `opts = {}` to automatically pass options to a plugin's `setup()` function, forcing the plugin to be loaded.
   --
   {
-    "catppuccin/nvim",
-	name = "catppuccin",
-	priority = 1000,
+    'catppuccin/nvim',
+    name = 'catppuccin',
+    priority = 1000,
     opts = {
-	  flavour = "macchiato", -- latte, frappe, macchiato, mocha
-	},
-  -- {
-  --   'nvimdev/dashboard-nvim',
-  --   event = 'VimEnter',
-  --   config = function()
-  --     require('dashboard').setup {
-  --       -- config
-  --       -- Hyper
-  --       -- theme = 'hyper',
-  --       -- packages = { enable = true },
-  --       -- week_header = {
-  --       --   enable = true,
-  --       -- },
-  --       -- shortcut = {
-  --       --   { desc = '󰊳 Update', group = '@property', action = 'Lazy update', key = 'u' },
-  --       --   {
-  --       --     icon = ' ',
-  --       --     icon_hl = '@variable',
-  --       --     desc = 'Files',
-  --       --     group = 'Label',
-  --       --     action = 'Telescope find_files',
-  --       --     key = 'f',
-  --       --   },
-  --       --   {
-  --       --     desc = ' Apps',
-  --       --     group = 'DiagnosticHint',
-  --       --     action = 'Telescope app',
-  --       --     key = 'a',
-  --       --   },
-  --       --   {
-  --       --     desc = ' dotfiles',
-  --       --     group = 'Number',
-  --       --     action = 'Telescope dotfiles',
-  --       --     key = 'd',
-  --       --   },
-  --       -- }
-  --       -- Doom
-  --       theme = 'doom',
-  --       header = {}, --your header
-  --       center = {
-  --         {
-  --           icon = ' ',
-  --           icon_hl = 'Title',
-  --           desc = 'Find File           ',
-  --           desc_hl = 'String',
-  --           key = 'b',
-  --           keymap = 'SPC f f',
-  --           key_hl = 'Number',
-  --           key_format = ' %s', -- remove default surrounding `[]`
-  --           action = 'lua print(2)'
-  --         },
-  --         {
-  --           icon = ' ',
-  --           desc = 'Find Dotfiles',
-  --           key = 'f',
-  --           keymap = 'SPC f d',
-  --           key_format = ' %s', -- remove default surrounding `[]`
-  --           action = 'lua print(3)'
-  --         },
-  --       },
-  --       footer = {}  --your footer
-  --     }
-  --   end,
-  --   dependencies = { {'nvim-tree/nvim-web-devicons'}}
-  -- },
+      flavour = 'macchiato', -- latte, frappe, macchiato, mocha
+    },
+    {
+      'kkharji/sqlite.lua',
+    },
+    -- {
+    --   'nvimdev/dashboard-nvim',
+    --   event = 'VimEnter',
+    --   config = function()
+    --     require('dashboard').setup {
+    --       -- config
+    --       -- Hyper
+    --       -- theme = 'hyper',
+    --       -- packages = { enable = true },
+    --       -- week_header = {
+    --       --   enable = true,
+    --       -- },
+    --       -- shortcut = {
+    --       --   { desc = '󰊳 Update', group = '@property', action = 'Lazy update', key = 'u' },
+    --       --   {
+    --       --     icon = ' ',
+    --       --     icon_hl = '@variable',
+    --       --     desc = 'Files',
+    --       --     group = 'Label',
+    --       --     action = 'Telescope find_files',
+    --       --     key = 'f',
+    --       --   },
+    --       --   {
+    --       --     desc = ' Apps',
+    --       --     group = 'DiagnosticHint',
+    --       --     action = 'Telescope app',
+    --       --     key = 'a',
+    --       --   },
+    --       --   {
+    --       --     desc = ' dotfiles',
+    --       --     group = 'Number',
+    --       --     action = 'Telescope dotfiles',
+    --       --     key = 'd',
+    --       --   },
+    --       -- }
+    --       -- Doom
+    --       theme = 'doom',
+    --       header = {}, --your header
+    --       center = {
+    --         {
+    --           icon = ' ',
+    --           icon_hl = 'Title',
+    --           desc = 'Find File           ',
+    --           desc_hl = 'String',
+    --           key = 'b',
+    --           keymap = 'SPC f f',
+    --           key_hl = 'Number',
+    --           key_format = ' %s', -- remove default surrounding `[]`
+    --           action = 'lua print(2)'
+    --         },
+    --         {
+    --           icon = ' ',
+    --           desc = 'Find Dotfiles',
+    --           key = 'f',
+    --           keymap = 'SPC f d',
+    --           key_format = ' %s', -- remove default surrounding `[]`
+    --           action = 'lua print(3)'
+    --         },
+    --       },
+    --       footer = {}  --your footer
+    --     }
+    --   end,
+    --   dependencies = { {'nvim-tree/nvim-web-devicons'}}
+    -- },
   },
 
   -- { 'nvim-mini/mini.nvim', version = false },
@@ -484,7 +488,7 @@ require('lazy').setup({
   -- Use the `dependencies` key to specify the dependencies of a particular plugin
   {
     'nvim-telescope/telescope-fzf-native.nvim',
-    build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release'
+    build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release',
   },
   { -- Fuzzy Finder (files, lsp, etc)
     'nvim-telescope/telescope.nvim',
@@ -564,6 +568,7 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+      vim.keymap.set({ 'n', 'v' }, '<leader>m', require('telescope').extensions.macroni.saved_macros, { desc = '[M]acros - Find saved macros' })
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
@@ -589,15 +594,48 @@ require('lazy').setup({
       end, { desc = '[S]earch [N]eovim files' })
     end,
   },
-
   {
     'ecthelionvi/NeoColumn.nvim',
     opts = {
-	  always_on = true,
-	},
+      always_on = true,
+    },
   },
   {
-    'ThePrimeagen/vim-be-good'
+    'HiPhish/rainbow-delimiters.nvim',
+    config = function()
+      require('rainbow-delimiters.setup').setup {
+        strategy = {
+          [''] = 'rainbow-delimiters.strategy.global',
+          vim = 'rainbow-delimiters.strategy.local',
+        },
+        query = {
+            [''] = 'rainbow-delimiters',
+            lua = 'rainbow-blocks',
+        },
+        priority = {
+            [''] = 110,
+            lua = 210,
+        },
+        highlight = {
+            'RainbowDelimiterRed',
+            'RainbowDelimiterYellow',
+            'RainbowDelimiterBlue',
+            'RainbowDelimiterOrange',
+            'RainbowDelimiterGreen',
+            'RainbowDelimiterViolet',
+            'RainbowDelimiterCyan',
+        },
+      }
+    end
+  },
+  {
+    'goolord/alpha-nvim',
+    config = function ()
+        require'alpha'.setup(require'alpha.themes.dashboard'.config)
+    end
+  },
+  {
+    'ThePrimeagen/vim-be-good',
   },
   -- LSP Plugins
   {
@@ -936,12 +974,12 @@ require('lazy').setup({
           -- `friendly-snippets` contains a variety of premade snippets.
           --    See the README about individual language/framework/plugin snippets:
           --    https://github.com/rafamadriz/friendly-snippets
-          -- {
-          --   'rafamadriz/friendly-snippets',
-          --   config = function()
-          --     require('luasnip.loaders.from_vscode').lazy_load()
-          --   end,
-          -- },
+          {
+            'rafamadriz/friendly-snippets',
+            config = function()
+              require('luasnip.loaders.from_vscode').lazy_load()
+            end,
+          },
         },
         opts = {},
       },
@@ -1056,20 +1094,20 @@ require('lazy').setup({
       -- - sr)'  - [S]urround [R]eplace [)] [']
       require('mini.surround').setup()
 
-      -- Simple and easy statusline.
-      --  You could remove this setup call if you don't like it,
-      --  and try some other statusline plugin
-      local statusline = require 'mini.statusline'
-      -- set use_icons to true if you have a Nerd Font
-      statusline.setup { use_icons = vim.g.have_nerd_font }
+      -- -- Simple and easy statusline.
+      -- --  You could remove this setup call if you don't like it,
+      -- --  and try some other statusline plugin
+      -- local statusline = require 'mini.statusline'
+      -- -- set use_icons to true if you have a Nerd Font
+      -- statusline.setup { use_icons = vim.g.have_nerd_font }
 
-      -- You can configure sections in the statusline by overriding their
-      -- default behavior. For example, here we set the section for
-      -- cursor location to LINE:COLUMN
-      ---@diagnostic disable-next-line: duplicate-set-field
-      statusline.section_location = function()
-        return '%2l:%-2v'
-      end
+      -- -- You can configure sections in the statusline by overriding their
+      -- -- default behavior. For example, here we set the section for
+      -- -- cursor location to LINE:COLUMN
+      -- ---@diagnostic disable-next-line: duplicate-set-field
+      -- statusline.section_location = function()
+      --   return '%2l:%-2v'
+      -- end
 
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
@@ -1087,27 +1125,27 @@ require('lazy').setup({
     'chipsenkbeil/distant.nvim',
     branch = 'v0.3',
     config = function()
-        require('distant'):setup({
-          -- servers = {
-          --     ['access.oregonstate.edu'] = {
-          --         connect = {
-          --             default = {
-          --                 -- username = 'kretschs',
-          --                 -- scheme = 'ssh',
-          --                 options = 'identity_files="~/.ssh/id_rsa_engi"'
-          --             }
-          --         }
-          --   }
-          -- }
-        })
-    end
+      require('distant'):setup {
+        -- servers = {
+        --     ['access.oregonstate.edu'] = {
+        --         connect = {
+        --             default = {
+        --                 -- username = 'kretschs',
+        --                 -- scheme = 'ssh',
+        --                 options = 'identity_files="~/.ssh/id_rsa_engi"'
+        --             }
+        --         }
+        --   }
+        -- }
+      }
+    end,
   },
   {
-    "sphamba/smear-cursor.nvim",
+    'sphamba/smear-cursor.nvim',
     opts = {
-	  cursor_color = "none",
-	  time_interval = 5
-	},
+      cursor_color = 'none',
+      time_interval = 5,
+    },
   },
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
@@ -1127,12 +1165,7 @@ require('lazy').setup({
       },
       indent = { enable = true, disable = { 'ruby' } },
     },
-    {
-      "alex-popov-tech/store.nvim",
-      dependencies = { "OXY2DEV/markview.nvim" },
-      opts = {},
-      cmd = "Store"
-    },
+
     -- Using lazy.nvim
     -- There are additional nvim-treesitter modules that you can use to interact
     -- with nvim-treesitter. You should go explore a few and see what interests you:
@@ -1141,7 +1174,105 @@ require('lazy').setup({
     --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
     --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
   },
-
+  {
+    'alex-popov-tech/store.nvim',
+    dependencies = { 'OXY2DEV/markview.nvim' },
+    opts = {},
+    cmd = 'Store',
+  },
+  {
+    'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    config = function()
+      require('lualine').setup {
+        options = {
+          icons_enabled = true,
+          theme = 'auto',
+          component_separators = { left = '', right = '' },
+          section_separators = { left = '', right = '' },
+          disabled_filetypes = {
+            statusline = {},
+            winbar = {},
+          },
+          ignore_focus = {},
+          always_divide_middle = true,
+          always_show_tabline = true,
+          globalstatus = false,
+          refresh = {
+            statusline = 1000,
+            tabline = 1000,
+            winbar = 1000,
+            refresh_time = 16, -- ~60fps
+            events = {
+              'WinEnter',
+              'BufEnter',
+              'BufWritePost',
+              'SessionLoadPost',
+              'FileChangedShellPost',
+              'VimResized',
+              'Filetype',
+              'CursorMoved',
+              'CursorMovedI',
+              'ModeChanged',
+            },
+          },
+        },
+        sections = {
+          lualine_a = { 'mode' },
+          lualine_b = { 'branch', 'diff', 'diagnostics' },
+          lualine_c = { 'filename' },
+          lualine_x = { 'encoding', 'fileformat', 'filetype' },
+          lualine_y = { 'progress' },
+          lualine_z = { 'location' },
+        },
+        inactive_sections = {
+          lualine_a = {},
+          lualine_b = {},
+          lualine_c = { 'filename' },
+          lualine_x = { 'location' },
+          lualine_y = {},
+          lualine_z = {},
+        },
+        tabline = {},
+        winbar = {},
+        inactive_winbar = {},
+        extensions = {},
+      }
+    end,
+  },
+  {
+    'ecthelionvi/NeoComposer.nvim',
+    dependencies = { 'kkharji/sqlite.lua' },
+    opts = {
+      notify = true,
+      delay_timer = 150,
+      queue_most_recent = false,
+      window = {
+        width = 60,
+        height = 10,
+        border = 'rounded',
+        winhl = {
+          Normal = 'ComposerNormal',
+        },
+      },
+      colors = {
+        bg = '#16161e',
+        fg = '#ff9e64',
+        red = '#ec5f67',
+        blue = '#5fb3b3',
+        green = '#99c794',
+      },
+      keymaps = {
+        play_macro = 'Q',
+        yank_macro = 'yq',
+        stop_macro = 'cq',
+        toggle_record = 'q',
+        cycle_next = '<c-n>',
+        cycle_prev = '<c-p>',
+        toggle_macro_menu = '<m-q>',
+      },
+    },
+  },
   -- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
   -- place them in the correct locations.
@@ -1152,11 +1283,38 @@ require('lazy').setup({
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
   -- require 'kickstart.plugins.debug',
-  -- require 'kickstart.plugins.indent_line',
+  require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
-  -- require 'kickstart.plugins.autopairs',
+  require 'kickstart.plugins.autopairs',
   -- require 'kickstart.plugins.neo-tree',
-  -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
+  require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
+  {
+    'nvim-tree/nvim-tree.lua',
+    version = '*',
+    lazy = false,
+    dependencies = {
+      'nvim-tree/nvim-web-devicons',
+    },
+    config = function()
+      require('nvim-tree').setup {}
+    end,
+  },
+  {
+    'jesseleite/nvim-macroni',
+    lazy = false,
+    opts = {
+      -- All of your `setup(opts)` and saved macros will go here
+      macros = {
+        pyinit = {
+          -- macro = "odef<Space>main()<Space>-><Space>None:<CR><CR><CR>if<Space>__name__<Space>==<Space>'__main__':<CR><Tab>main()<Esc>kkki<Tab><Esc>llq",
+          macro = "o<Esc>idef<Space>main()<Space>-><Space>None:<CR><CR><BS><CR><BS>if<Space>__name__<Space>==<Space>'__main__':<CR>main()<Esc>kkki<Tab><Esc>q",
+        },
+      },
+    },
+  },
+  {
+    'github/copilot.vim',
+  },
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
@@ -1190,6 +1348,9 @@ require('lazy').setup({
   },
 })
 
-vim.cmd.colorscheme "catppuccin-macchiato"
+require('telescope').load_extension 'macros'
+require('NeoComposer.ui').status_recording()
+
+vim.cmd.colorscheme 'catppuccin-macchiato'
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
